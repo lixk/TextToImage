@@ -25,5 +25,9 @@ def render(url, filename, size='', zoom=''):
     return result[0].decode('utf-8')
 
 
+def text_to_richtext(text):
+
+    pass
+
 if __name__ == '__main__':
     print(render('http://m.baidu.com', 'a.pdf', 'Letter'))

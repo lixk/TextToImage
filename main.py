@@ -64,4 +64,6 @@ def convert():
 
 
 if __name__ == '__main__':
+    print('convert start...')
     convert()
+    input('convert complete!\npress enter key to exit...')

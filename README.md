@@ -61,7 +61,7 @@ For Other operating systems, please replace the phantomjs.exe( in the `lib` fold
     file.style=background:#fff;color:#000
 
 ### 使用方法：
-将待转换的文本文件放入输入文件夹（默认`input`文件夹），运行 `main.py`，等程序运行结束，在输出文件夹中即可看到输出的图片或者PDF文件。
-### 说明：
+将待转换的文本文件放入输入文件夹（默认`input`文件夹），运行 `main.py`，等程序运行结束，在输出文件夹（默认output文件夹）中即可看到输出的图片或者PDF文件。
+### 注意：
 Windows系统下，可以直接运行build-exe文件夹内编译打包好的可执行文件（TextToImage.exe）不需要安装Python环境；
 其他操作系统，请替换`lib`文件夹下的phantomjs.exe为对应系统下的phantomjs，然后运行`main.py`即可。

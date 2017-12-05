@@ -19,15 +19,11 @@ def render(url, filename, size='', zoom=''):
     :return: 
     """
     cmd = './lib/phantomjs.exe ./lib/rasterize.js {} {} {} {}'.format(url, filename, size, zoom)
-    print(cmd.encode('utf-8'))
+    print(cmd)
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     result = p.communicate()
     return result[0].decode('utf-8')
 
-
-def text_to_richtext(text):
-
-    pass
 
 if __name__ == '__main__':
     print(render('http://m.baidu.com', 'a.pdf', 'Letter'))

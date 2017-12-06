@@ -11,7 +11,7 @@ if (system.args.length < 3 || system.args.length > 5) {
 } else {
     address = system.args[1];
     output = system.args[2];
-    page.viewportSize = { width: 600, height: 600 };
+    page.viewportSize = { width: 600, height: 1 };
     if (system.args.length > 3 && system.args[2].substr(-4) === ".pdf") {
         size = system.args[3].split('*');
         page.paperSize = size.length === 2 ? { width: size[0], height: size[1], margin: '0px' }
@@ -25,9 +25,10 @@ if (system.args.length < 3 || system.args.length > 5) {
             page.clipRect = { top: 0, left: 0, width: pageWidth, height: pageHeight };
         } else {
             pageWidth = parseInt(size[0], 10);
-            pageHeight = parseInt(pageWidth * 3/4, 10); // it's as good an assumption as any
-            console.log ("pageHeight:",pageHeight);
-            page.viewportSize = { width: pageWidth, height: pageHeight };
+            //pageHeight = parseInt(pageWidth * 3/4, 10); // it's as good an assumption as any
+            //console.log ("pageHeight:",pageHeight);
+            //page.viewportSize = { width: pageWidth, height: pageHeight };
+            page.viewportSize = { width: pageWidth, height: 1 };
         }
     }
     if (system.args.length > 4) {
@@ -40,6 +41,7 @@ if (system.args.length < 3 || system.args.length > 5) {
         } else {
             window.setTimeout(function () {
                 page.render(output);
+                console.log ('success!');
                 phantom.exit();
             }, 200);
         }

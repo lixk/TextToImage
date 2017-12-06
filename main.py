@@ -42,7 +42,12 @@ html = '''
 '''
 
 
-def convert():
+def convert_file():
+    """
+    convert file to images or PDF files
+    
+    :return: 
+    """
     files = glob.glob('{0}/*'.format(data_in))
     for file in files:
         basename = os.path.basename(file)
@@ -51,6 +56,9 @@ def convert():
         # read input file data
         with open(file, 'r', encoding=charset.detect(file)) as src:
             text = src.read()
+            # if the file is empty, skip it
+            if not text:
+                continue
             if 'false' == is_richtext.lower():
                 # replace special character
                 text = ''.join(map(lambda char: special_chars.get(char, char), text))
@@ -59,11 +67,25 @@ def convert():
                 temp.write(html.format(file_style, text))
 
         # render the temp file to image or pdf
-        render(temp_file, output_file, file_size, file_zoom)
-        print('complete:', output_file)
+        result = render(temp_file, output_file, file_size, file_zoom)
+        print('complete:', output_file, result)
+
+
+def convert_webpage(url, file_basename):
+    """
+    convert web page to images or PDF files
+     
+    :param url: web page url, example: 'http://www.baidu.com'
+    :param file_basename: output file basename, example: 'baidu'
+    :return: 
+    """
+    filename = os.path.join(data_out, '{0}.{1}'.format(file_basename, file_type))
+    result = render(url, filename, file_size, file_zoom)
+    print('complete:', filename, result)
 
 
 if __name__ == '__main__':
     print('convert start...')
-    convert()
+    convert_file()
+    # convert_webpage('http://www.baidu.com', 'baidu')
     input('convert complete!\npress enter key to exit...')
